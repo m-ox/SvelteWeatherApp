@@ -56,7 +56,7 @@
     } else if (measurementType === 'C') {
       return convertToCelsius(temp)
     } else {
-      return 'eat shit'
+      return '¯\_(ツ)_/¯'
     }
   }
 </script>
