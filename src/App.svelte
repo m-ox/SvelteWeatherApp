@@ -62,7 +62,9 @@
 </script>
 
 <main class={`${weatherStatus}-bg`}>
-  <h1>Hello. The main weather today is <span class="weather-status--{weatherStatus}">{weatherStatus}</span>!</h1>
+  <header>
+    <h1>Hello. The main weather today is <span class="weather-status--{weatherStatus}">{weatherStatus}</span>!</h1>
+  </header>
 
   <div class="card">
     {#await fetchLocation()}
@@ -98,20 +100,53 @@
     {/await}
   </div>
 
-  <p>
-    Provided coordinates: {lon} and {lat}
-  </p>
+  <footer>
+    <p>
+      Provided coordinates: {lon} and {lat}
+    </p>
+    
+    <p>
+      For more information on weather, please visit the <a href="https://www.weather.gov/" target="_blank" rel="noreferrer">National Weather Service</a> site.
+    </p>
   
-  <p>
-    For more information on weather, please visit the <a href="https://www.weather.gov/" target="_blank" rel="noreferrer">National Weather Service</a> site.
-  </p>
-
-  <p class="read-the-docs">
-    This app was created with Vite and Svelte.
-  </p>
+    <p class="read-the-docs">
+      This app was created with Vite and Svelte.
+    </p>
+  </footer>
+  
 </main>
 
 <style>
+  header {
+    width: 80%;
+    display: flex;
+    place-content: center;
+    align-self: center;
+  }
+
+  header h1 {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1rem;
+    padding: .5rem 0;
+    margin: 0 1rem;
+    background-color: #84848480;
+    border-radius: 1rem;
+  }
+
+  footer {
+    background-color: #84848480;
+    border-radius: 1rem;
+    width: 80%;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
   main {
     height: -webkit-fill-available;
     width: 100%;
@@ -140,34 +175,22 @@
 
   .rain-bg {
     background-image: url(./assets/backgrounds/rainy.jpg);
+    color: whitesmoke !important;
   }
 
   .snow-bg {
     background-image: url(./assets/backgrounds/snow.jpg);
+    color: whitesmoke !important;
   }
 
   .drizzle-bg {
     background-image: url(./assets/backgrounds/drizzle.jpg);
+    color: whitesmoke !important;
   }
 
   .thunderstorm-bg {
     background-image: url(./assets/backgrounds/thunderstorm.jpg);
-  }
-
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #343effaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #dfdfdf;
+    color: whitesmoke !important;
   }
 
   .weather-status--cloudy {
@@ -177,6 +200,10 @@
   .weather-status--clear {
     color: orange;
   }
+
+  .weather-status--rain {
+    color: steelblue;
+  }
   
   button {
     height: auto;
@@ -185,12 +212,6 @@
     margin: 0.3rem;
     padding: 2px;
     border-radius: 1rem;
-  }
-
-  h1 {
-    font-size: 1rem;
-    padding: .5rem 0;
-    margin: 0 1rem;
   }
 
   p {
