@@ -1,5 +1,6 @@
 <script>
   let weatherStatus = "clear";
+  let weatherIconUrl = '';
   const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
   let lon = '';
   let lat = '';
@@ -21,6 +22,8 @@
       const weatherPromise = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
       let weatherRes = await weatherPromise.json();
       weatherStatus = weatherRes.weather[0].main.toLowerCase() || 'cloudy';
+      console.log('weatherRes:', weatherRes)
+      weatherIconUrl = `http://openweathermap.org/img/w/${weatherRes.weather[0].icon}.png`
       return weatherRes;
     }
   }
@@ -63,7 +66,7 @@
 
 <main class={`${weatherStatus}-bg`}>
   <header>
-    <h1>Hello. The main weather today is <span class="weather-status--{weatherStatus}">{weatherStatus}</span>!</h1>
+    <h1>Hello. The main weather today is <span class="weather-status--{weatherStatus}">{weatherStatus}</span>!</h1><img src={weatherIconUrl} />
   </header>
 
   <div class="card">
