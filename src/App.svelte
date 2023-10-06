@@ -130,13 +130,13 @@
 
   header h1 {
     padding: 1rem;
+    background-color: #84848480;
   }
 
   h1 {
     font-size: 1rem;
     padding: .5rem 0;
     margin: 0 1rem;
-    background-color: #84848480;
     border-radius: 1rem;
   }
 
@@ -153,7 +153,7 @@
 
   main {
     height: -webkit-fill-available;
-    width: 100%;
+    width: inherit;
     margin: 0;
     padding: 1rem 0;
     background-position-y: center;
@@ -238,7 +238,7 @@
     border: 1px solid white;
     border-radius: 1rem;
     margin: 0.2rem;
-    white-space: no-wrap;
+    white-space: nowrap;
   }
 
   .weather-tile-header {
