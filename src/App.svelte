@@ -17,7 +17,7 @@
     };
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
   }
-  async function fetchWeather(lat, lon) {
+  async function fetchWeather() {
     if (lat && lon) {
       const weatherPromise = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
       let weatherRes = await weatherPromise.json();
@@ -30,7 +30,7 @@
 
   // converters
   function convertToCelsius(k) {
-    return Math.floor(weather.main.temp - 273.15)
+    return Math.floor(k - 273.15)
   }
   function convertToFahrenheit(k) {
     return Math.floor((k - 273.15) * 9/5 + 32)
@@ -53,7 +53,8 @@
       fahrenColor = 'green';
     }
   }
-  function calcTemp(temp) {
+  function calcTemp(temp, measurementType) {
+    console.log('temp:', temp)
     if (measurementType === 'F') {
       return convertToFahrenheit(temp)
     } else if (measurementType === 'C') {
@@ -92,7 +93,7 @@
               <span style="color: {celsiusColor}">C</span>/<span style="color: {fahrenColor}">F</span>
             </button>
           </div>
-          <p>{calcTemp(weather?.main.temp)} {measurementType}°</p>
+          <p>{calcTemp(weather?.main.temp, measurementType)} {measurementType}°</p>
         </div>
         <div class="weather-tile">
           <h1>Wind Speed</h1>
